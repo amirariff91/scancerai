@@ -41,10 +41,6 @@ const nextConfig = {
     // Keep existing configuration if any
     domains: [],
     // Add other image configuration as needed
-  },
-  // Next.js 13+ app directory
-  experimental: {
-    appDir: true
   }
 };
 
