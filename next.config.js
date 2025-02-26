@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone', // Enable standalone output for Docker
   webpack: (config, { isServer }) => {
     // Only apply this in the browser build
     if (!isServer) {

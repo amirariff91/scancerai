@@ -4,6 +4,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 ![React](https://img.shields.io/badge/React-18-61DAFB)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
 
 ScancerAI is an AI-powered medical imaging analysis application that helps radiologists and clinicians diagnose faster and more accurately.
 
@@ -31,6 +32,7 @@ ScancerAI delivers powerful tools to enhance medical imaging workflows and impro
 - **State Management**: React Hooks and Context API
 - **DICOM Processing**: Cornerstone libraries for medical imaging visualization
 - **Styling**: Mobile-first responsive design with Tailwind
+- **Deployment**: Docker containerization for easy deployment
 
 ## 🖥️ DICOM Viewer Implementation
 
@@ -48,6 +50,8 @@ The application features a dual-implementation approach for DICOM viewing:
 
 ## 🚦 Getting Started
 
+### Development Setup
+
 First, run the development server:
 
 ```bash
@@ -63,6 +67,42 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
+
+### Docker Deployment
+
+ScancerAI can be deployed using Docker for production environments:
+
+#### Option 1: Using Docker Compose (Recommended)
+
+```bash
+# Start the application
+docker-compose up -d
+
+# Stop the application
+docker-compose down
+```
+
+#### Option 2: Using the Deployment Script
+
+```bash
+# Make the script executable
+chmod +x docker-deploy.sh
+
+# Run the deployment script
+./docker-deploy.sh
+```
+
+#### Option 3: Manual Docker Commands
+
+```bash
+# Build the Docker image
+docker build -t scancerai:latest .
+
+# Run the container
+docker run -d --name scancerai-app -p 3000:3000 scancerai:latest
+```
+
+For detailed deployment instructions, see [DOCKER-DEPLOYMENT.md](DOCKER-DEPLOYMENT.md)
 
 ## 📁 Project Structure
 
@@ -80,6 +120,8 @@ scancerai/
 ├── lib/                    # Utility functions
 ├── public/                 # Static assets
 ├── next.config.js          # Next.js configuration
+├── Dockerfile              # Docker configuration
+├── docker-compose.yml      # Docker Compose configuration
 └── README.md               # Project documentation
 ```
 
@@ -104,9 +146,14 @@ To learn more about the technologies used in this project:
 - [Tailwind CSS](https://tailwindcss.com/docs)
 - [Shadcn UI](https://ui.shadcn.com)
 - [Cornerstone Libraries](https://cornerstonejs.org)
+- [Docker Documentation](https://docs.docker.com)
 
 ## 🚀 Deployment
 
-The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
+The application can be deployed in multiple ways:
+
+1. **Docker**: Using the provided Dockerfile and docker-compose.yml (see above)
+2. **Vercel**: The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js
+3. **Custom Hosting**: Deploy to any platform that supports Node.js applications
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
