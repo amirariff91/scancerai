@@ -20,6 +20,34 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## ScancerAI Features
+
+ScancerAI is an AI-powered medical imaging analysis application that helps radiologists and clinicians diagnose faster and more accurately.
+
+### Key components:
+
+- **Dashboard**: View statistics and recent studies
+- **DICOM Viewer**: Visualize and analyze medical images
+- **Study Analysis**: AI-driven insights and findings
+- **Upload Interface**: Easy DICOM file upload and management
+
+## DICOM Viewer Migration
+
+The application is currently undergoing a migration from legacy Cornerstone libraries to the modern Cornerstone3D toolkit.
+
+### Migration Strategy
+
+We're using a gradual approach to migrate:
+
+1. **Dual Implementation**: Both legacy and modern components exist simultaneously
+2. **User Toggle**: Users can switch between viewers to compare functionality
+3. **Gradual Adoption**: We're collecting feedback before fully migrating
+4. **Modern Architecture**: The new viewer uses React hooks, modern tooling, and better error handling
+
+### Testing the New Viewer
+
+When viewing a study, look for the "Try Cornerstone3D (Beta)" toggle to experience the new viewer.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
