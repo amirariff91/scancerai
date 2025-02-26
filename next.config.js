@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone', // Enable standalone output for Docker
+  // Ensure the app is served from the root path
+  basePath: '',
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
