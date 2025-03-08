@@ -49,9 +49,23 @@ const nextConfig = {
   // Handle Cornerstone wasm files
   images: {
     // Keep existing configuration if any
-    domains: [],
+    domains: ['scancerai.amrff.com'],
     // Add other image configuration as needed
-  }
+  },
+  // Add hostname configuration
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Host',
+            value: 'scancerai.amrff.com',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig; 
