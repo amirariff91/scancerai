@@ -49,6 +49,7 @@ const nextConfig = {
   // Handle Cornerstone wasm files
   images: {
     domains: ['scancerai.amrff.com', 'scancerai-compose-txtzkk-037383-5-223-50-174.traefik.me'],
+    unoptimized: true,
   },
   // Update headers configuration for multiple domains
   async headers() {
@@ -74,6 +75,17 @@ const nextConfig = {
   },
   publicRuntimeConfig: {
     appUrl: process.env.NEXT_PUBLIC_APP_URL,
+  },
+  // Add rewrites to handle root path
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/:path*',
+          destination: '/:path*',
+        },
+      ],
+    };
   },
 };
 

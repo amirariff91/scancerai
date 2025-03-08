@@ -19,7 +19,12 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.scancerai.rule=Host(`scancerai-compose-txtzkk-037383-5-223-50-174.traefik.me`)"
       - "traefik.http.services.scancerai.loadbalancer.server.port=3000"
-      - "traefik.http.routers.scancerai.entrypoints=web"
+      - "traefik.http.routers.scancerai.entrypoints=web,websecure"
+      - "traefik.http.middlewares.scancerai-stripprefix.stripprefix.prefixes=/"
+      - "traefik.http.routers.scancerai.middlewares=scancerai-stripprefix"
+      - "traefik.docker.network=proxy"
+    networks:
+      - proxy
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
       interval: 30s
@@ -34,4 +39,8 @@ services:
       restart_policy:
         condition: on-failure
         max_attempts: 3
-        window: 120s 
+        window: 120s
+
+networks:
+  proxy:
+    external: true 
