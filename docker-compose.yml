@@ -8,11 +8,16 @@ services:
     image: scancerai:latest
     restart: unless-stopped
     ports:
-      - "3001-3010:3000"
+      - "3000"
     environment:
       - NODE_ENV=production
-      # Add any other environment variables your app needs
-      # - API_URL=https://api.example.com
+      # Add other environment variables your app needs
+      - HOST=0.0.0.0
+      - PORT=3000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.scancerai.rule=Host(`scancerai-compose-txtzkk-037383-5-223-50-174.traefik.me`)"
+      - "traefik.http.services.scancerai.loadbalancer.server.port=3000"
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
       interval: 30s

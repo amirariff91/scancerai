@@ -48,11 +48,9 @@ const nextConfig = {
   },
   // Handle Cornerstone wasm files
   images: {
-    // Keep existing configuration if any
-    domains: ['scancerai.amrff.com'],
-    // Add other image configuration as needed
+    domains: ['scancerai.amrff.com', 'scancerai-compose-txtzkk-037383-5-223-50-174.traefik.me'],
   },
-  // Add hostname configuration
+  // Update headers configuration for multiple domains
   async headers() {
     return [
       {
@@ -60,7 +58,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Host',
-            value: 'scancerai.amrff.com',
+            value: 'scancerai-compose-txtzkk-037383-5-223-50-174.traefik.me',
           },
         ],
       },
