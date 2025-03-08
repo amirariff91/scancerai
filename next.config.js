@@ -64,6 +64,17 @@ const nextConfig = {
       },
     ];
   },
+  // Add hostname configuration
+  experimental: {
+    serverActions: true,
+  },
+  // Ensure proper hostname handling
+  serverRuntimeConfig: {
+    hostname: '0.0.0.0',
+  },
+  publicRuntimeConfig: {
+    appUrl: process.env.NEXT_PUBLIC_APP_URL,
+  },
 };
 
 module.exports = nextConfig; 

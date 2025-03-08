@@ -11,13 +11,15 @@ services:
       - "3000"
     environment:
       - NODE_ENV=production
-      # Add other environment variables your app needs
-      - HOST=0.0.0.0
+      - HOSTNAME=0.0.0.0
+      - NEXT_SHARP_PATH=/tmp/node_modules/sharp
       - PORT=3000
+      - NEXT_PUBLIC_APP_URL=http://scancerai-compose-txtzkk-037383-5-223-50-174.traefik.me
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.scancerai.rule=Host(`scancerai-compose-txtzkk-037383-5-223-50-174.traefik.me`)"
       - "traefik.http.services.scancerai.loadbalancer.server.port=3000"
+      - "traefik.http.routers.scancerai.entrypoints=web"
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
       interval: 30s
