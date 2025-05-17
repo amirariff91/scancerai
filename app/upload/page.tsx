@@ -51,33 +51,64 @@ export default function UploadPage() {
     }
     
     setIsUploading(true);
-    setUploadProgress(0);
+    setUploadProgress(0); // Reset progress for new upload
     setErrorMessage(null);
-    
-    // For demo purposes, we'll simulate a file upload
-    // In a real app, we would upload to a server
-    const simulateUpload = () => {
+
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append('files', file); // Use 'files' as the field name, matching the API
+    });
+
+    try {
+      const response = await fetch('/api/upload-dicom', {
+        method: 'POST',
+        body: formData,
+        // Note: Don't set Content-Type header when using FormData with fetch,
+        // the browser will set it correctly with the boundary.
+      });
+
+      // Simulate progress for now, as fetch doesn't directly support upload progress
+      // In a real app, you might use XMLHttpRequest or a library for progress.
       let progress = 0;
       const interval = setInterval(() => {
-        progress += Math.floor(Math.random() * 10) + 1;
+        progress += 20; // Simulate progress
         if (progress >= 100) {
           progress = 100;
           clearInterval(interval);
-          
-          // Generate a mock study ID
-          const studyId = uuidv4();
-          
-          // Redirect to the study page after a short delay
-          setTimeout(() => {
-            setIsUploading(false);
-            router.push(`/studies/${studyId}`);
-          }, 500);
         }
         setUploadProgress(progress);
-      }, 200);
-    };
-    
-    simulateUpload();
+      }, 100); // Adjust timing as needed
+
+      const result = await response.json();
+      clearInterval(interval); // Clear simulation interval once response is received
+      setUploadProgress(100); // Ensure progress shows 100%
+
+      if (!response.ok) {
+        setErrorMessage(result.error || `Upload failed with status: ${response.status}`);
+        setIsUploading(false);
+        return;
+      }
+
+      const { studyId } = result;
+      if (studyId) {
+        console.log('Upload successful, Study ID:', studyId, 'Files:', result.filePaths);
+        // Redirect to the study page after a short delay
+        setTimeout(() => {
+          setIsUploading(false);
+          router.push(`/studies/${studyId}`);
+        }, 500);
+      } else {
+        setErrorMessage('Upload succeeded but did not receive a study ID.');
+        setIsUploading(false);
+      }
+
+    } catch (error) {
+      console.error('Upload error:', error);
+      const message = error instanceof Error ? error.message : "An unknown error occurred during upload.";
+      setErrorMessage(`Upload failed: ${message}`);
+      setIsUploading(false);
+      setUploadProgress(0); // Reset progress on error
+    }
   }
   
   return (

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/image"; // Assuming you might want an image in the CTA like before
 import { Button } from "@/app/components/ui/button";
 import { 
   BrainCircuit, 
@@ -7,12 +7,10 @@ import {
   Microscope, 
   Scan, 
   Users, 
-  ArrowRight, 
   ChevronRight,
   HeartPulse,
   FileClock
 } from "lucide-react";
-
 import { 
   Card, 
   CardContent, 
@@ -22,7 +20,7 @@ import {
   CardFooter
 } from "@/app/components/ui/card";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* Hero section */}
@@ -32,7 +30,7 @@ export default function Home() {
             <BrainCircuit className="h-8 w-8 text-primary" />
           </div>
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-            Medical imaging analysis <span className="text-primary">powered by AI</span>
+            Medical Imaging Analysis <span className="text-primary">Powered by AI</span>
           </h1>
           <p className="max-w-[800px] text-muted-foreground md:text-xl/relaxed lg:text-xl/relaxed xl:text-xl/relaxed">
             Scancer<span className="text-primary">AI</span> helps radiologists and clinicians diagnose faster and more accurately with AI-driven insights, reducing workload and improving patient outcomes.
@@ -41,18 +39,17 @@ export default function Home() {
             <Button size="lg" asChild>
               <Link href="/upload" className="gap-2">
                 <Scan className="h-5 w-5" />
-                Upload a scan
+                Upload a Scan
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/dashboard" className="gap-2">
                 <FileText className="h-5 w-5" />
-                View dashboard
+                View Dashboard
               </Link>
             </Button>
           </div>
         </div>
-        
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </section>
 
@@ -64,8 +61,7 @@ export default function Home() {
               Transforming Medical Imaging with AI
             </h2>
             <p className="text-muted-foreground md:text-lg">
-              Our platform delivers powerful tools to enhance your medical imaging workflow
-              and improve diagnostic accuracy.
+              Our platform delivers powerful tools to enhance your medical imaging workflow and improve diagnostic accuracy.
             </p>
           </div>
 
@@ -80,7 +76,7 @@ export default function Home() {
                   DICOM Viewing
                 </CardTitle>
                 <CardDescription>
-                  Advanced browser-based DICOM viewer
+                  Advanced browser-based DICOM viewer.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -91,7 +87,7 @@ export default function Home() {
               <CardFooter className="pt-2 border-t">
                 <Button variant="ghost" size="sm" asChild className="gap-1">
                   <Link href="/upload">
-                    Try viewing
+                    Try Viewing
                     <ChevronRight className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -108,7 +104,7 @@ export default function Home() {
                   AI Analysis
                 </CardTitle>
                 <CardDescription>
-                  Automated detection in seconds
+                  Automated detection in seconds.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -119,7 +115,7 @@ export default function Home() {
               <CardFooter className="pt-2 border-t">
                 <Button variant="ghost" size="sm" asChild className="gap-1">
                   <Link href="/upload">
-                    Try analyzing
+                    Try Analyzing
                     <ChevronRight className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -136,7 +132,7 @@ export default function Home() {
                   Reporting
                 </CardTitle>
                 <CardDescription>
-                  Structured reporting with AI assistance
+                  Structured reporting with AI assistance.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -147,7 +143,7 @@ export default function Home() {
               <CardFooter className="pt-2 border-t">
                 <Button variant="ghost" size="sm" asChild className="gap-1">
                   <Link href="/dashboard">
-                    See examples
+                    See Examples
                     <ChevronRight className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -165,7 +161,7 @@ export default function Home() {
               Why Choose Scancer<span className="text-primary">AI</span>
             </h2>
             <p className="text-muted-foreground md:text-lg">
-              Our platform is designed to integrate seamlessly into your clinical workflow
+              Our platform is designed to integrate seamlessly into your clinical workflow.
             </p>
           </div>
 
@@ -177,7 +173,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Our AI algorithms achieve 94% accuracy in detecting common pathologies, reducing false negatives by 30%.
+                  Our AI algorithms achieve high accuracy in detecting common pathologies, aiding in precise diagnostics.
                 </p>
               </CardContent>
             </Card>
@@ -189,7 +185,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Reduce reading time by up to 40% with AI-assisted workflows and automated findings detection.
+                  Reduce reading time with AI-assisted workflows and automated findings detection, boosting efficiency.
                 </p>
               </CardContent>
             </Card>
@@ -213,7 +209,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Export anonymized data for research purposes and contribute to improving healthcare outcomes.
+                  Export anonymized data for research purposes and contribute to improving healthcare outcomes globally.
                 </p>
               </CardContent>
             </Card>
@@ -228,7 +224,7 @@ export default function Home() {
             <div className="grid gap-6 md:grid-cols-2 md:gap-10 items-center">
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-white md:text-3xl">
-                  Ready to transform your radiology workflow?
+                  Ready to Transform Your Radiology Workflow?
                 </h2>
                 <p className="text-primary-foreground md:text-lg">
                   Join thousands of radiologists and clinicians who are using Scancer<span className="font-semibold">AI</span> to improve patient outcomes.
@@ -237,18 +233,21 @@ export default function Home() {
                   <Button size="lg" variant="default" className="bg-white hover:bg-white/90 text-primary" asChild>
                     <Link href="/upload" className="gap-2">
                       <Scan className="h-5 w-5" />
-                      Try it now
+                      Try It Now
                     </Link>
                   </Button>
                   <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
-                    <a href="#" className="gap-2">
+                    {/* Assuming a placeholder link or a future contact page */}
+                    <a href="#contact-sales" className="gap-2">
                       <Users className="h-5 w-5" />
-                      Contact sales
+                      Contact Sales
                     </a>
                   </Button>
                 </div>
               </div>
               <div className="hidden md:block">
+                {/* You can re-add an Image component here if you have a suitable dashboard preview image */}
+                {/* Example:
                 <div className="relative h-72 w-full overflow-hidden rounded-lg">
                   <div className="absolute inset-0 bg-black/20 z-10 rounded-lg" />
                   <Image 
@@ -259,6 +258,10 @@ export default function Home() {
                     priority
                   />
                 </div>
+                */}
+                <div className="relative h-72 w-full overflow-hidden rounded-lg bg-primary-foreground/20 flex items-center justify-center">
+                  <BrainCircuit className="h-32 w-32 text-primary/50" />
+                </div>
               </div>
             </div>
           </div>
@@ -266,4 +269,4 @@ export default function Home() {
       </section>
     </div>
   );
-}
+} 

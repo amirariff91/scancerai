@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   description: 'View detailed information about your medical scan',
 };
 
-export default function StudyPage({ params }: StudyPageProps) {
-  // Access the studyId directly from params
-  const studyId = params.id;
+export default async function StudyPage({ params: paramsProp }: StudyPageProps) {
+  // Asynchronous access of `params.id`.
+  const { id: studyId } = await paramsProp; // Await paramsProp and destructure id as studyId
   
   return (
     <StudyPageClient studyId={studyId} />

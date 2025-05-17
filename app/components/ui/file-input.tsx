@@ -70,7 +70,6 @@ export function FileInput({
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
-      onClick={handleClick}
     >
       <input
         ref={inputRef}

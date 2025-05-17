@@ -1,10 +1,10 @@
 # ScancerAI
 
 ![ScancerAI](https://img.shields.io/badge/ScancerAI-Medical%20Imaging%20Analysis-blue)
-![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
-![React](https://img.shields.io/badge/React-18-61DAFB)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
+![React](https://img.shields.io/badge/React-19-61DAFB)
+![Nixpacks](https://img.shields.io/badge/Nixpacks-Ready-blueviolet)
 
 ScancerAI is an AI-powered medical imaging analysis application that helps radiologists and clinicians diagnose faster and more accurately.
 
@@ -27,12 +27,12 @@ ScancerAI delivers powerful tools to enhance medical imaging workflows and impro
 
 ## 🔧 Tech Stack
 
-- **Frontend**: Next.js 14 with App Router, React 18, TypeScript
+- **Frontend**: Next.js 15 with App Router, React 19, TypeScript
 - **UI**: Tailwind CSS with Shadcn UI and Radix UI components
-- **State Management**: React Hooks and Context API
+- **State Management**: React Hooks and Context API, nuqs for URL state
 - **DICOM Processing**: Cornerstone libraries for medical imaging visualization
 - **Styling**: Mobile-first responsive design with Tailwind
-- **Deployment**: Docker containerization for easy deployment
+- **Deployment**: Nixpacks for simplified, reproducible builds and deployments
 
 ## 🖥️ DICOM Viewer Implementation
 
@@ -68,41 +68,22 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-### Docker Deployment
+### Deployment with Nixpacks
 
-ScancerAI can be deployed using Docker for production environments:
+This project is configured for deployment using [Nixpacks](https://nixpacks.com/). Nixpacks automatically detects the project type, builds an optimized container image, and runs the application.
 
-#### Option 1: Using Docker Compose (Recommended)
+- **Prerequisites**: Ensure your deployment platform supports Nixpacks (e.g., Railway, Fly.io) or you have Nixpacks CLI installed locally.
+- **Configuration**: A `nixpacks.toml` file is included to specify the start command: `yarn start -p $PORT`. Nixpacks will use the port provided by the `$PORT` environment variable.
+- **Build & Deploy**:
+  - If your hosting provider has native Nixpacks support, deployment is usually as simple as connecting your Git repository.
+  - For local builds or other platforms, you can use the Nixpacks CLI:
+    ```bash
+    nixpacks build . --name scancerai-app
+    docker run -d --name scancerai-app -p 3000:$PORT -e PORT=3000 scancerai-app
+    ```
+    (Adjust port mapping and environment variables as needed for your setup.)
 
-```bash
-# Start the application
-docker-compose up -d
-
-# Stop the application
-docker-compose down
-```
-
-#### Option 2: Using the Deployment Script
-
-```bash
-# Make the script executable
-chmod +x docker-deploy.sh
-
-# Run the deployment script
-./docker-deploy.sh
-```
-
-#### Option 3: Manual Docker Commands
-
-```bash
-# Build the Docker image
-docker build -t scancerai:latest .
-
-# Run the container
-docker run -d --name scancerai-app -p 3000:3000 scancerai:latest
-```
-
-For detailed deployment instructions, see [DOCKER-DEPLOYMENT.md](DOCKER-DEPLOYMENT.md)
+Nixpacks handles the build process, including installing dependencies specified in `package.json` and running the `build` script.
 
 ## 📁 Project Structure
 
@@ -119,9 +100,9 @@ scancerai/
 │   └── page.tsx            # Home page
 ├── lib/                    # Utility functions
 ├── public/                 # Static assets
-├── next.config.js          # Next.js configuration
-├── Dockerfile              # Docker configuration
-├── docker-compose.yml      # Docker Compose configuration
+├── next.config.mjs         # Next.js configuration (ESM)
+├── eslint.config.mjs       # ESLint configuration (ESM)
+├── nixpacks.toml           # Nixpacks configuration
 └── README.md               # Project documentation
 ```
 
@@ -143,17 +124,16 @@ Contributions to ScancerAI are welcome! Please feel free to submit a Pull Reques
 To learn more about the technologies used in this project:
 
 - [Next.js Documentation](https://nextjs.org/docs)
+- [Nixpacks Documentation](https://nixpacks.com/docs)
 - [Tailwind CSS](https://tailwindcss.com/docs)
 - [Shadcn UI](https://ui.shadcn.com)
 - [Cornerstone Libraries](https://cornerstonejs.org)
-- [Docker Documentation](https://docs.docker.com)
 
-## 🚀 Deployment
+## 🚀 General Deployment Advice
 
-The application can be deployed in multiple ways:
+Beyond Nixpacks, you can also consider:
 
-1. **Docker**: Using the provided Dockerfile and docker-compose.yml (see above)
-2. **Vercel**: The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js
-3. **Custom Hosting**: Deploy to any platform that supports Node.js applications
+1.  **Vercel**: The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
+2.  **Other Node.js Hosting**: Deploy to any platform that supports Node.js applications by building the app (`yarn build`) and running the start command (`yarn start -p $PORT`).
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details on various deployment strategies.
